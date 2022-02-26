@@ -16,7 +16,7 @@ public class CodeContest {
 	public static final double CHANCE_IMPOSTER = 0.5;
 	public static void main(String[] args) throws InterruptedException {
 		Scanner input = new Scanner(System.in); // Greet the Player
-		System.out.println("Welcome to Amogus: The Squeakuel\n\nThis is a game about deception, trickery, and espionage. Do you have what it takes?\nTake the" + "\u001B[31m" + " Imposter " + "\u001B[0m" + "challenge. Stab your friends 29,998,559,671,349 times in a row!\n\n");
+		System.out.println("Welcome to Amogus: The Squeakuel\n\nThis is a game about deception, trickery, and espionage. Do you have what it takes?\nTake the Imposter challenge. Stab your friends 29,998,559,671,349 times in a row!\n\n");
 		doMainMenu(input);
 	}
 	public static void doMainMenu(Scanner input) throws InterruptedException {
@@ -51,7 +51,7 @@ public class CodeContest {
 		System.out.println("Input your character's name.");	// Get name
 		PLAYER = new Amogus(input.nextLine(), Math.random() > CHANCE_IMPOSTER); // Create Player Character
 		addSpessman(PLAYER, (PLAYER.isImposter() ? imposters : spessmens));
-		printSleep(new String[]{"Greetings, " + PLAYER.getName() + ".\nRolling to determine whether you're an" + "\u001B[31m" + " imposter " + "\u001B[0m" + "or not...", PLAYER.isImposter() ? "You are an \u001B[31m" + "imposter" + "\u001B[0m!" : "You are innocent.", "Please input the number of players you would like to play with. (4-" + NAMES.size() + ")"}, new int[]{3000, 2000, 0});
+		printSleep(new String[]{"Greetings, " + PLAYER.getName() + ".\nRolling to determine whether you're an imposter or not...", PLAYER.isImposter() ? "You are an imposter!" : "You are innocent.", "Please input the number of players you would like to play with. (4-" + NAMES.size() + ")"}, new int[]{3000, 2000, 0});
 		MAX_SPESSMEN = input.nextInt();
 		generateRandomNPCs(spessmens, imposters, rng); // Create Non-Player Characters
 		while (gameState == 0) { // Start game
@@ -64,7 +64,7 @@ public class CodeContest {
 				gameState = 1;
 			}
 		}
-		printSleep(new String[]{gameState == 2 ? "\n\nThere are no more Spessmen. The" + "\u001B[31m" + " Imposters " + "\u001B[0m" + "have taken over the Spessstation.\n\u001B[31m" + "Imposters" + "\u001B[0m Win!" : "\n\nThe \u001B[31m" + "Imposters" + "\u001B[0m have been wiped out. The Spessmen succeed in their mission.\nSpessmen Win!", "Surviving " + ((gameState == 2) ? "\u001B[31mImposters\u001B[0m:" : "Spessmen:")}, new int[]{4000, 1000});
+		printSleep(new String[]{gameState == 2 ? "\n\nThere are no more Spessmen. The Imposters have taken over the Spessstation.\nImposters Win!" : "\n\nThe Imposters have been wiped out. The Spessmen succeed in their mission.\nSpessmen Win!", "Surviving " + ((gameState == 2) ? "Imposters:" : "Spessmen:")}, new int[]{4000, 1000});
 		for (Amogus character : gameState == 2 ? imposters : spessmens) {
 			printSleep(new String[]{"\t" + character.getName()}, new int[]{500});
 		}
@@ -83,7 +83,7 @@ public class CodeContest {
 		} else {
 			System.out.println(EVENTS.get(rng.nextInt(EVENTS.size())));
 		}
-		System.out.println("\t\u001B[31mImposters\u001B[0m left: " + imposters.size() + "\n\tInnocents left: " + spessmens.size());
+		System.out.println("\tImposters left: " + imposters.size() + "\n\tInnocents left: " + spessmens.size());
 	}
 	public static void generateRandomNPCs(ArrayList<Amogus> spessmens, ArrayList<Amogus> imposters, Random rng) throws InterruptedException {
 		printSleep(new String[]{"Connecting to game host...", "Verifying integrity of game cache...", "Reticulating splines...", "Sending client info...", "\nConnected to game host! Opening ports for players to join...\n"}, new int[]{2000, 2100, 2500, 4000, 3000});
